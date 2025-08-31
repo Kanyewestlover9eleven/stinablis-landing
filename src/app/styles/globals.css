@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap');
+
+:root{
+  --bg:#0b0d12; --ink:#ffffff; --muted:#b7becb;
+  --stroke:#1c2230; --card:#10141c;
+  --btn:#ffffff; --btnText:#0b0d12; --btnHover:#e7e9ee;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,Segoe UI,Roboto,Arial;overflow-x:hidden}
+img,video{max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+
+/* Bigger canvas */
+.section{padding:140px 32px}
+.container{max-width:1280px;margin:0 auto}
+
+.subtle{color:var(--muted)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;
+  padding:14px 26px;border-radius:999px;font-weight:800;text-transform:none;font-size:1.05rem}
+.btn-primary{background:var(--btn);color:var(--btnText);box-shadow:0 12px 28px rgba(0,0,0,.28)}
+.btn-primary:hover{background:var(--btnHover)}
+.btn-ghost{border:1px solid var(--stroke);color:#fff;background:transparent}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+
+.card{background:var(--card);border:1px solid var(--stroke);border-radius:16px;overflow:hidden}
+.card-pad{padding:28px}
+
+.grid{display:grid;gap:28px}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:1100px){.grid-3{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.grid-3{grid-template-columns:1fr}}
+
+.aspect-3x2{aspect-ratio:3/2;object-fit:cover;display:block}
+.hr{height:1px;background:var(--stroke);margin:36px 0}
