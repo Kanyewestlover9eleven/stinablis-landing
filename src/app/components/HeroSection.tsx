@@ -17,7 +17,13 @@ export default function HeroSection(){
             Production-grade software, data, and AI systems with clean UI and ruthless reliability.
           </Typography>
           <Stack direction={{ xs:"column", sm:"row" }} spacing={2} sx={{ mt:2 }}>
-            <Button href="#contact" className="btn btn-primary">Talk to us</Button>
+            <Button
+              href="#contact"
+              className="btn btn-primary"
+              sx={{ color: "#fff" }}   // ✅ force white text
+            >
+              Talk to us
+            </Button>
           </Stack>
         </Stack>
       </Container>
