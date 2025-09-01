@@ -3,9 +3,12 @@ import { Box, Button, Typography } from "@mui/material";
 import Section from "./Section";
 
 const products = [
-  { img:"/product1.jpg", title:"Signal", desc:"Executive analytics cockpit. Real-time KPIs with zero setup." },
-  { img:"/product2.jpg", title:"Relay",  desc:"Workflow automation: requests → approvals → Slack/Email." },
-  { img:"/about-image.jpg", title:"Atlas", desc:"Headless CMS + site kit. Blazing fast, SEO-first." },
+  { img:"/rapid.jpg", title:"Rapid Prototyping", desc:"We make prototypes" },
+  { img:"/product2.jpg", title:"Sustainable Composites",  desc:"sustainable engineering" },
+  { img:"/3dprint.jpg", title:"3D Printing", desc:"any prints you want" },
+  { img:"/automotive.jpg", title:"Automotive Parts", desc:"customised parts based on your needs" },
+  { img:"/about-image.jpg", title:"Reverse Engineering", desc:"Reverse engineering" },
+  { img:"/software.jpg", title:"Software Solutions", desc:"Customised Software Solutions catered to your needs" },
 ];
 
 export default function ProductSection(){
