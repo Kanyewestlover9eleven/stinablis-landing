@@ -1,9 +1,45 @@
 "use client";
 
-import { Box, Container, Typography, TextField, Button, Stack, Link } from "@mui/material";
+import { useRef } from "react";
+import emailjs from "emailjs-com";
+import {
+  Box,
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Stack,
+  Link,
+} from "@mui/material";
 import Section from "./Section";
 
 export default function ContactSection() {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!formRef.current) return;
+
+    emailjs
+      .sendForm(
+        "service_z4refme",        // Your EmailJS service ID
+        "template_2tz2nes",       // Your EmailJS template ID
+        formRef.current,
+        "W4PxuH5Nidlqts1aJ"      // Your EmailJS public key
+      )
+      .then(
+        () => {
+          alert("Message sent successfully!");
+          formRef.current?.reset();
+        },
+        (error) => {
+          alert("Failed to send message. Please try again.");
+          console.error("EmailJS Error:", error.text);
+        }
+      );
+  };
+
   return (
     <Section id="contact" withDivider={false}>
       <Container maxWidth="lg">
@@ -29,25 +65,43 @@ export default function ContactSection() {
           >
             Contact Us
           </Typography>
-          <Typography className="subtle">Tell us what you need. We’ll reply fast.</Typography>
+          <Typography className="subtle">
+            Tell us what you need. We’ll reply fast.
+          </Typography>
         </Box>
 
         {/* Address • Form • Map */}
-        <Stack direction={{ xs: "column", md: "row" }} spacing={{ xs: 4, md: 6 }} alignItems="stretch">
+        <Stack
+          direction={{ xs: "column", md: "row" }}
+          spacing={{ xs: 4, md: 6 }}
+          alignItems="stretch"
+        >
           {/* Address */}
           <Box flex={1}>
             <Typography fontWeight={700}>
-              No. 58, G floor, Block B, Taman Sri Sarawak, Jalan Padungan, 93350 Kuching Sarawak
+              Lot 1324, No.856, 1st Floor Tabuan Jaya 93350 Kuching Sarawak Malaysia
             </Typography>
             <Typography sx={{ mt: 1 }}>(+60) 11-6091 5670</Typography>
             <Typography sx={{ mt: 1 }}>info@stinablis.com</Typography>
 
             <Box sx={{ mt: 2 }}>
-              <Link href="https://facebook.com/YOUR_PAGE" target="_blank" rel="noopener" underline="hover" color="inherit">
+              <Link
+                href="https://facebook.com/stinablis"
+                target="_blank"
+                rel="noopener"
+                underline="hover"
+                color="inherit"
+              >
                 Stinablis Facebook Page
               </Link>
               <br />
-              <Link href="https://linkedin.com/YOUR_PAGE" target="_blank" rel="noopener" underline="hover" color="inherit">
+              <Link
+                href="https://linkedin.com/company/stinablis"
+                target="_blank"
+                rel="noopener"
+                underline="hover"
+                color="inherit"
+              >
                 Stinablis LinkedIn Page
               </Link>
             </Box>
@@ -55,41 +109,70 @@ export default function ContactSection() {
 
           {/* Form */}
           <Box flex={1} className="card" sx={{ p: { xs: 2.5, md: 3 } }}>
-            <Stack spacing={2}>
-              <TextField
-                fullWidth
-                placeholder="Your email"
-                variant="outlined"
-                InputProps={{
-                  sx: {
-                    bgcolor: "transparent",
-                    color: "#fff",
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "var(--stroke)" },
-                    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255,255,255,.3)" },
-                    "& input": { color: "#fff" },
-                  },
-                }}
-              />
-              <TextField
-                fullWidth
-                multiline
-                minRows={4}
-                placeholder="Your message"
-                variant="outlined"
-                InputProps={{
-                  sx: {
-                    bgcolor: "transparent",
-                    color: "#fff",
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "var(--stroke)" },
-                    "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "rgba(255,255,255,.3)" },
-                    "& textarea": { color: "#fff" },
-                  },
-                }}
-              />
-              <Button className="btn btn-primary" sx={{ alignSelf: { xs: "stretch", md: "flex-start" } }}>
-                SEND
-              </Button>
-            </Stack>
+            <form ref={formRef} onSubmit={sendEmail}>
+              <Stack spacing={2}>
+                <TextField
+                  slotProps={{ htmlInput: { name: "user_name" } }}
+                  fullWidth
+                  placeholder="Your name"
+                  variant="outlined"
+                  required
+                  InputProps={{
+                    sx: {
+                      bgcolor: "transparent",
+                      color: "#fff",
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "var(--stroke)",
+                      },
+                      "& input": { color: "#fff" },
+                    },
+                  }}
+                />
+                <TextField
+                  slotProps={{ htmlInput: { name: "user_email" } }}
+                  fullWidth
+                  placeholder="Your email"
+                  variant="outlined"
+                  required
+                  InputProps={{
+                    sx: {
+                      bgcolor: "transparent",
+                      color: "#fff",
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "var(--stroke)",
+                      },
+                      "& input": { color: "#fff" },
+                    },
+                  }}
+                />
+                <TextField
+                  slotProps={{ htmlInput: { name: "message" } }}
+                  fullWidth
+                  multiline
+                  minRows={4}
+                  placeholder="Your message"
+                  variant="outlined"
+                  required
+                  InputProps={{
+                    sx: {
+                      bgcolor: "transparent",
+                      color: "#fff",
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "var(--stroke)",
+                      },
+                      "& textarea": { color: "#fff" },
+                    },
+                  }}
+                />
+                <Button
+                  type="submit"
+                  className="btn btn-primary"
+                  sx={{ alignSelf: { xs: "stretch", md: "flex-start" } }}
+                >
+                  SEND
+                </Button>
+              </Stack>
+            </form>
           </Box>
 
           {/* Map */}

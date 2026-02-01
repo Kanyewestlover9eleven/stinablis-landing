@@ -24,7 +24,7 @@ export default function HeroSection() {
               color: "#fff",
             }}
           >
-            Stinablis
+            STINABLIS
           </Typography>
 
           <Typography className="subtle" sx={{ maxWidth: 900, fontSize: { xs: "1.05rem", md: "1.25rem" }, lineHeight: 1.7, px: { xs: 1, md: 0 } }}>
