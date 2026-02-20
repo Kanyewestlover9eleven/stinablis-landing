@@ -35,6 +35,11 @@ export default function Footer() {
           },
         }
       );
+
+      // Refresh ScrollTrigger after a short delay for mobile
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
     });
 
     return () => ctx.revert();

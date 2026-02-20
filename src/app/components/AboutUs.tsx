@@ -70,6 +70,11 @@ export default function AboutUs() {
           },
         }
       );
+
+      // Refresh ScrollTrigger after a short delay for mobile
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
     }, sectionRef);
 
     return () => ctx.revert();

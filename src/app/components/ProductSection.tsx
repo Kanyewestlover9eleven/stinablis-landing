@@ -68,6 +68,11 @@ export default function ProductSection() {
           );
         }
       });
+
+      // Refresh ScrollTrigger after a short delay for mobile
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
     }, sectionRef);
 
     return () => ctx.revert();
